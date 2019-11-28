@@ -1,0 +1,17 @@
+Lista de Requisitos Funcionais Aplicalção Web
+
+Back-office:
+- Gerir utilizadores registados;
+- RBAC.
+
+Front-office:
+- Registo;
+- Login;
+- Adicionar organizações;
+- Adicionar edifícios;
+- Adicionar salas;
+- Consultar/Selecionar organizações;
+- Consultar/Selecionar edifícios/salas;
+- Requisitar salas;
+- Consultar Requisições;
+- Processos de filtragem e pesquisa.  
