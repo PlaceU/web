@@ -9,7 +9,7 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $email;
+
     public $username;
     public $password;
     public $rememberMe = true;
@@ -23,7 +23,7 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // email and password are both required
+            // username and password are both required
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
