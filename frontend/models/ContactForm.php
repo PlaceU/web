@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -12,8 +13,8 @@ class ContactForm extends Model
 {
     public $name;
     public $email;
-    public $subject;
-    public $body;
+    public $morada;
+    public $contacto;
     public $verifyCode;
 
 
@@ -24,7 +25,7 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
+            [['name', 'email'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
@@ -50,12 +51,12 @@ class ContactForm extends Model
      */
     public function sendEmail($email)
     {
-        return Yii::$app->mailer->compose()
-            ->setTo($email)
-            ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-            ->setReplyTo([$this->email => $this->name])
-            ->setSubject($this->subject)
-            ->setTextBody($this->body)
-            ->send();
+        $user = User::findByUsername($this->username);
+        $user->email = $this->email;
+        $user->morada = $this->morada;
+        $user->name = $this->name;
+        $user->contacto = $this->contacto;
+        return $user->save();
+
     }
 }
