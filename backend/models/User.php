@@ -14,15 +14,15 @@ use Yii;
  * @property string|null $password_reset_token
  * @property string $email
  * @property string|null $name
- * @property int $status
- * @property int $created_at
- * @property int $updated_at
+ * @property int|null $status
+ * @property int|null $created_at
+ * @property int|null $updated_at
  * @property string|null $verification_token
  * @property int $isadmin
  *
  * @property MembrosOrganizacao[] $membrosOrganizacaos
- * @property Organizacao[] $organizacaos
- * @property Organizacao[] $organizacaos0
+ * @property Organizacoes[] $organizacaos
+ * @property Organizacoes[] $organizacoes
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -40,7 +40,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email'], 'required'],
             [['status', 'created_at', 'updated_at', 'isadmin'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
@@ -84,14 +84,14 @@ class User extends \yii\db\ActiveRecord
      */
     public function getOrganizacaos()
     {
-        return $this->hasMany(Organizacao::className(), ['id' => 'id_organizacao'])->viaTable('membros_organizacao', ['id_utilizador' => 'id']);
+        return $this->hasMany(Organizacoes::className(), ['id' => 'id_organizacao'])->viaTable('membros_organizacao', ['id_utilizador' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrganizacaos0()
+    public function getOrganizacoes()
     {
-        return $this->hasMany(Organizacao::className(), ['id_owner' => 'id']);
+        return $this->hasMany(Organizacoes::className(), ['id_owner' => 'id']);
     }
 }

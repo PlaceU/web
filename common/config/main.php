@@ -25,7 +25,7 @@ return [
 
                     'pluralize' => 'false',
 
-				     //'extraPatterns' => ['GET hello' => 'hello',]
+				     'extraPatterns' => ['GET hello' => 'hello',]
 				 ],
             ],
         ],
