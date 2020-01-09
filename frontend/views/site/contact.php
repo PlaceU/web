@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'name') ?>
 
                 <?= $form->field($model, 'email') ?>
 
@@ -30,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'contacto') ?>
 
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                <!-- <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
+                ]) ?> -->
 
                 <div class="form-group">
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

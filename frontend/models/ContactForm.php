@@ -29,7 +29,7 @@ class ContactForm extends Model
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            //['verifyCode', 'captcha'],
         ];
     }
 
@@ -51,12 +51,16 @@ class ContactForm extends Model
      */
     public function sendEmail($email)
     {
-        $user = User::findByUsername($this->username);
+        $user = User::findByUsername(Yii::$app->user->identity->username);
         $user->email = $this->email;
         $user->morada = $this->morada;
         $user->name = $this->name;
         $user->contacto = $this->contacto;
         return $user->save();
+    }
+
+    public function saveData($user)
+    {
 
     }
 }
