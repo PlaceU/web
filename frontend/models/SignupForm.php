@@ -11,7 +11,7 @@ use common\models\User;
 class SignupForm extends Model
 {
     public $username;
-    //public $email;
+    public $email;
     public $password;
 
 
@@ -26,14 +26,14 @@ class SignupForm extends Model
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            /*['email', 'trim'],
+            ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],*/
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 3],
         ];
     }
 
@@ -50,7 +50,7 @@ class SignupForm extends Model
         
         $user = new User();
         $user->username = $this->username;
-       // $user->email = $this->email;
+        $user->email = $this->email;
         $user->status = User::STATUS_ACTIVE;
         $user->setPassword($this->password);
         return $user->save();
