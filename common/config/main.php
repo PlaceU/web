@@ -17,17 +17,7 @@ return [
 
             'showScriptName' => false,
 
-            'rules'=> [
 
-                ['class'=>'yii\rest\UrlRule',
-
-                    'controller' => 'user',
-
-                    'pluralize' => 'false',
-
-				     'extraPatterns' => ['GET hello' => 'hello',]
-				 ],
-            ],
         ],
     ],
 ];
