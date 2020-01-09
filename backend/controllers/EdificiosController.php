@@ -14,9 +14,6 @@ use yii\filters\VerbFilter;
  */
 class EdificiosController extends Controller
 {
-
-    public $modelClass = 'backend\models\edificios';
-
     /**
      * {@inheritdoc}
      */

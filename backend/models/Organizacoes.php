@@ -13,9 +13,10 @@ use Yii;
  * @property string $mail
  * @property string $contacto_fixo
  * @property string $contacto_movel
- * @property string $dta_registo
+ * @property string|null $dta_registo
  * @property int $id_owner
  *
+ * @property Edificios[] $edificios
  * @property MembrosOrganizacao[] $membrosOrganizacaos
  * @property User[] $utilizadors
  * @property User $owner
@@ -60,6 +61,14 @@ class Organizacoes extends \yii\db\ActiveRecord
             'dta_registo' => 'Dta Registo',
             'id_owner' => 'Id Owner',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEdificios()
+    {
+        return $this->hasMany(Edificios::className(), ['id_organizacao' => 'id']);
     }
 
     /**

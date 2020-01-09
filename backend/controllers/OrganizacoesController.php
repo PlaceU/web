@@ -5,7 +5,6 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Organizacoes;
 use backend\models\OrganizacoesSearch;
-use yii\rest\ActiveController;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,9 +14,6 @@ use yii\filters\VerbFilter;
  */
 class OrganizacoesController extends Controller
 {
-
-    public $modelClass = 'backend\models\organizacoes';
-
     /**
      * {@inheritdoc}
      */

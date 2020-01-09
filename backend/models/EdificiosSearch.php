@@ -17,7 +17,7 @@ class EdificiosSearch extends Edificios
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'id_organizacao'], 'integer'],
             [['designacao', 'morada'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class EdificiosSearch extends Edificios
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'id_organizacao' => $this->id_organizacao,
         ]);
 
         $query->andFilterWhere(['like', 'designacao', $this->designacao])
