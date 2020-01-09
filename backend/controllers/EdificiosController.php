@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Edificios;
+use common\models\Edificios;
 use backend\models\EdificiosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

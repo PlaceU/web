@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Organizacoes;
+use common\models\Organizacoes;
 use backend\models\OrganizacoesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

@@ -4,7 +4,7 @@ namespace backend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Organizacoes;
+use common\models\Organizacoes;
 
 /**
  * OrganizacoesSearch represents the model behind the search form of `backend\models\Organizacoes`.

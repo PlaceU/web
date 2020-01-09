@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Salas;
+use common\models\Salas;
 use backend\models\SalasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
