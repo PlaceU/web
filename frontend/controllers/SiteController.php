@@ -74,7 +74,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //return para o index se o login estiver definido, senao vai para a pagina de login
+        if (!Yii::$app->user->isGuest){
+            return $this->render('index');
+        }else{
+            return $this->actionLogin();
+        }
     }
 
     /**
@@ -120,6 +125,9 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+
+        $model->name = Yii::$app->user->identity->name;
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
