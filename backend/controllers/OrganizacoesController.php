@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Organizacoes;
 use backend\models\OrganizacoesSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,9 +21,24 @@ class OrganizacoesController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index', 'organizacoes', 'create', 'view', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    'logout' => ['post'],
                     'delete' => ['POST'],
                 ],
             ],

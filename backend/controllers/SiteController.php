@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\User;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\Controller;
@@ -77,6 +78,12 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
+
+            $user = User::findByUsername($model->username);
+            if ($user->isadmin != true){
+                return $this->actionLogout();
+            }
             return $this->goBack();
         } else {
             $model->password = '';

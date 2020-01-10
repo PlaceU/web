@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\User;
 use backend\models\UserSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,16 +19,31 @@ class UserController extends Controller
      * {@inheritdoc}
      */
     public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+        {
+            return [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['login', 'error'],
+                            'allow' => true,
+                        ],
+                        [
+                            'actions' => ['logout', 'index', 'user', 'create', 'view', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
                 ],
-            ],
-        ];
-    }
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'logout' => ['post'],
+                        'delete' => ['POST'],
+                    ],
+                ],
+            ];
+        }
 
     /**
      * Lists all User models.
@@ -118,7 +134,7 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+            if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

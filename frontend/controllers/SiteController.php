@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\User;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -124,6 +125,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        /*
         $model = new ContactForm();
 
         $model->name = Yii::$app->user->identity->name;
@@ -141,6 +143,17 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+        */
+
+        $model = User::findOne(8);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['contact', 'id' => $model->id]);
+        }
+
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -162,7 +175,12 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            //Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+
+            $loginForm = new LoginForm();
+            $loginForm->username = $model->username;
+            $loginForm->password = $model->password;
+            $loginForm->login();
             return $this->goHome();
         }
 

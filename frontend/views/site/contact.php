@@ -6,7 +6,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+use yii\widgets\DetailView;
+
 
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,29 +15,26 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
-
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                <?= $form->field($model, 'name') ?>
+            <?php $form = ActiveForm::begin(); ?>
 
-                <?= $form->field($model, 'email') ?>
+            <?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'morada') ?>
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'contacto') ?>
+            <?= $form->field($model, 'status')->textInput() ?>
 
-                <!-- <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?> -->
+            <?= $form->field($model, 'created_at')->textInput() ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
+            <?= $form->field($model, 'updated_at')->textInput() ?>
+
+            <?= $form->field($model, 'verification_token')->textInput(['maxlength' => true]) ?>
+
+            <div class="form-group">
+                <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            </div>
 
             <?php ActiveForm::end(); ?>
         </div>
